@@ -14,11 +14,11 @@ fun main() = runBlocking {
         // The state of the Job is
     }
 
-    val job1 = GlobalScope.launch(exceptionHandler) {
+    val job1 = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
         throw RuntimeException()
     }
 
-    val job2 = GlobalScope.launch(Dispatchers.IO + exceptionHandler) {
+    val job2 = CoroutineScope(Dispatchers.Default + exceptionHandler).launch {
         throw RuntimeException()
     }
 
