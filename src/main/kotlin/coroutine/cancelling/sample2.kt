@@ -1,22 +1,21 @@
 package coroutine.cancelling
 
+import coroutine.benchmark
 import kotlinx.coroutines.*
 import kotlin.coroutines.coroutineContext
 
 // How can I make a coroutine cooperative?
 
 fun main() = runBlocking {
-    val start = System.currentTimeMillis()
+    benchmark {
+        val job = CoroutineScope(Dispatchers.IO).launch {
+            cooperativeTask()
+            // Note: any built in suspend function like delay() is cooperative!
+        }
 
-    val job = CoroutineScope(Dispatchers.IO).launch {
-        cooperativeTask()
+        job.cancel()
+        job.join() // the cooperative task stops working when the coroutine is no longer in "Active" state
     }
-
-    job.cancel()
-    job.join() // the cooperative task stops working when the coroutine is no longer in "Active" state
-
-    val end = System.currentTimeMillis()
-    println("completed after ${end - start}ms")
 }
 
 // This function is cooperative.
@@ -25,7 +24,7 @@ private suspend fun cooperativeTask() {
     val duration = 2000L
 
     // checks if the Coroutine is in "Active" state
-    while(start + duration > System.currentTimeMillis() && coroutineContext.isActive) {
+    while (start + duration > System.currentTimeMillis() && coroutineContext.isActive) {
         // do nothing
     }
 }
