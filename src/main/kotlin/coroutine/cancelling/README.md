@@ -1,6 +1,6 @@
 ### Is a Coroutine always cancelled properly?
 No. Every coroutine must be cooperative when it receives the cancellation signal.
-A non-cooperative coroutine will run until its function ends or the the process is killed.
+A non-cooperative coroutine will run until its function ends or the process is killed.
 ```kotlin
 /**
  * This function is not cooperative.
@@ -16,10 +16,10 @@ val job = CoroutineScope(Dispatchers.IO).launch {
 
 job.cancel()
 ```
-After `job.cancel()`, `nonCooperativeTask()` is still running because it does not check the state of it's coroutine.
+After `job.cancel()`, `nonCooperativeTask()` is still running because it does not check the state of its coroutine.
 
 ### How can I make a suspend function cooperative?
-To make a function cooperative, you need to check the state of it's coroutine either by:
+To make a function cooperative, you need to check the state of its coroutine either by:
 * [coroutineContext.isActive](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/kotlin.coroutines.-coroutine-context/is-active.html)
 * or [coroutineContext.ensureActive](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/ensure-active.html)
 ```kotlin
@@ -39,7 +39,7 @@ val job = CoroutineScope(Dispatchers.IO).launch {
 
 job.cancel()
 ```
-After `job.cancel()`, `cooperativeTask()` is can still run. At the next check of `coroutineContext.isActive` it will exit it's loop.
+After `job.cancel()`, `cooperativeTask()` can still run. At the next check of `coroutineContext.isActive` it will exit its loop.
 
 ### Does all jobs get cancelled when the scope gets cancelled?
 All of a Jobs children Jobs gets cancelled when the parent job receives a cancellation Signal.
