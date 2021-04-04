@@ -15,14 +15,14 @@ fun main() = runBlocking {
         logJobsChildren(supervisorJob) // Job2 is not cancelled when Job1 fails
     }
 
-    val coroutineScope = CoroutineScope(Dispatchers.IO + exceptionHandler + supervisorJob)
+    val coroutineScope = CoroutineScope(Dispatchers.Default + exceptionHandler + supervisorJob)
 
     val job1 = coroutineScope.launch(CoroutineName("Job1")) {
         throw RuntimeException()
     }
 
     val job2 = coroutineScope.launch(CoroutineName("Job2")) {
-        delay(100L)
+        delay(50L)
         println("Job2 done") // SupervisorJob ensures other children coroutines can keep running when an uncaught exception happens anywhere in the CoroutineScope
     }
 

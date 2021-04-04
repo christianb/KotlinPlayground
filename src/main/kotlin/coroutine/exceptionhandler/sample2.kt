@@ -15,15 +15,14 @@ fun main() = runBlocking {
         logJobsChildren(job) // no other jobs are active
     }
 
-    val coroutineScope = CoroutineScope(Dispatchers.IO + exceptionHandler + job)
+    val coroutineScope = CoroutineScope(Dispatchers.Default + exceptionHandler + job)
 
     val job1 = coroutineScope.launch {
-        delay(50L)
         throw RuntimeException()
     }
 
     val job2 = coroutineScope.launch {
-        delay(200L)
+        delay(50L)
         println("job2 done") // This job gets never done when an uncaught exception happens anywhere in the CoroutineScope!
     }
 

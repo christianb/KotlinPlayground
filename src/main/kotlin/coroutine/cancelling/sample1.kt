@@ -20,7 +20,7 @@ fun main() = runBlocking {
 // It does not respect the cancellation state of the coroutine it runs in.
 private fun nonCooperativeTask() {
     val start = System.currentTimeMillis()
-    val duration = 2000L
+    val duration = 1000L
 
     while (start + duration > System.currentTimeMillis()) {
         // do nothing

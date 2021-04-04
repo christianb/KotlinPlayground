@@ -18,7 +18,7 @@ fun main() = runBlocking {
         throw RuntimeException()
     }
 
-    val job2 = CoroutineScope(Dispatchers.Default + exceptionHandler).launch {
+    val job2 = CoroutineScope(Dispatchers.Unconfined + exceptionHandler).launch {
         throw RuntimeException()
     }
 

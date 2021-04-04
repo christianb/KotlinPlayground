@@ -8,7 +8,7 @@ import kotlin.coroutines.coroutineContext
 
 fun main() = runBlocking {
     benchmark {
-        val job = CoroutineScope(Dispatchers.IO).launch {
+        val job = CoroutineScope(Dispatchers.Default).launch {
             cooperativeTask()
             // Note: any built in suspend function like delay() is cooperative!
         }
@@ -21,7 +21,7 @@ fun main() = runBlocking {
 // This function is cooperative.
 private suspend fun cooperativeTask() {
     val start = System.currentTimeMillis()
-    val duration = 2000L
+    val duration = 1000L
 
     // checks if the Coroutine is in "Active" state
     while (start + duration > System.currentTimeMillis() && coroutineContext.isActive) {

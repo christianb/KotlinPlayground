@@ -11,7 +11,7 @@ fun main() = runBlocking {
         println("${threadInfo()}, uncaught exception $exception, ${coroutineContext[Job]}")
     }
 
-    val coroutineScope = CoroutineScope(Dispatchers.IO + exceptionHandler)
+    val coroutineScope = CoroutineScope(Dispatchers.Default + exceptionHandler)
 
     try {
         coroutineScope.launch {

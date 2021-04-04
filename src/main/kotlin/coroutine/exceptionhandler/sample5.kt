@@ -14,7 +14,7 @@ fun main() = runBlocking {
         // as the exception was caught in the try-catch
     }
 
-    val coroutineScope = CoroutineScope(Dispatchers.IO + exceptionHandler)
+    val coroutineScope = CoroutineScope(Dispatchers.Default + exceptionHandler)
 
     coroutineScope.launch {
         try {

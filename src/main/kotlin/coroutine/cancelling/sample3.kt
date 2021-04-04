@@ -9,7 +9,7 @@ import kotlinx.coroutines.*
 fun main() = runBlocking {
     benchmark {
         val job = Job()
-        val coroutineScope = CoroutineScope(Dispatchers.IO + job)
+        val coroutineScope = CoroutineScope(Dispatchers.Default + job)
 
         val childJob1 = coroutineScope.launch { delay(500L) }
         val childJob2 = coroutineScope.launch { delay(500L) }
