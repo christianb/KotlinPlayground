@@ -8,8 +8,10 @@ fun logThreadInfo() {
     println("Thread: ${threadInfo()}")
 }
 
-fun logJobsChildren(job: Job?) {
+fun logJobsChildren(job: Job?, prefix: String = "") {
+    println("${prefix}job: $job")
+
     job?.children?.forEach {
-        println("child job: $it")
+        logJobsChildren(it, "$prefix  ")
     }
 }
