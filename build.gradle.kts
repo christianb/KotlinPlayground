@@ -14,6 +14,9 @@ repositories {
 }
 
 dependencies {
+    // https://github.com/Kotlin/kotlinx.coroutines/blob/master/CHANGES.md
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+
     testImplementation(kotlin("test-junit"))
 }
 
