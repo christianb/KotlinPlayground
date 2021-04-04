@@ -20,7 +20,7 @@ fun main() = runBlocking {
 
 // This function is not cooperative.
 // It does not respect the cancellation state of the coroutine it runs in.
-fun nonCooperativeTask() {
+private fun nonCooperativeTask() {
     val start = System.currentTimeMillis()
     val duration = 2000L
 
