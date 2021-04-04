@@ -1,7 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.10"
+    // https://github.com/JetBrains/kotlin/blob/master/ChangeLog.md
+    kotlin("jvm") version "1.4.30"
     application
 }
 
