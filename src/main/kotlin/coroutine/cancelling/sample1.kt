@@ -7,7 +7,7 @@ import kotlinx.coroutines.*
 
 fun main() = runBlocking {
     benchmark {
-        val job = CoroutineScope(Dispatchers.IO).launch {
+        val job = CoroutineScope(Dispatchers.Default).launch {
             nonCooperativeTask()
         }
 

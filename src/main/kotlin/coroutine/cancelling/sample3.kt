@@ -11,16 +11,13 @@ fun main() = runBlocking {
         val job = Job()
         val coroutineScope = CoroutineScope(Dispatchers.IO + job)
 
-        val job1 = coroutineScope.launch {
-            delay(500L)
-        }
-
-        val job2 = coroutineScope.launch { delay(500L) }
+        val childJob1 = coroutineScope.launch { delay(500L) }
+        val childJob2 = coroutineScope.launch { delay(500L) }
 
         logJobsChildren(job) // all children jobs are in "Active" state
         coroutineScope.cancel()
         logJobsChildren(job) // all children jobs are in "Cancelling" state
 
-        joinAll(job1, job2)
+        joinAll(childJob1, childJob2)
     }
 }
