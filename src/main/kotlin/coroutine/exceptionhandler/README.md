@@ -1,5 +1,5 @@
 ### On which thread the CoroutineExceptionHandler will catch the Exception?
-The thread a `CoroutineExceptionHandler` is called on is the same thread the coroutine had run when the exception was thrown.
+The `CoroutineExceptionHandler` gets called on the same thread as the coroutine that had thrown the exception!
 ```kotlin
 val exceptionHandler = CoroutineExceptionHandler { _, exception ->
     println("${Thread.currentThread().name}, uncaught exception $exception")
