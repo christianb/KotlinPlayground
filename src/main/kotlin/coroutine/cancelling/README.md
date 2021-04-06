@@ -1,5 +1,5 @@
-### Is a Coroutine always cancelled properly?
-No. Every coroutine must be cooperative when it receives the cancellation signal.
+### When cancelling a coroutine, what happens to the execution of the function(s) inside that coroutine?
+Every coroutine must be cooperative when it receives the cancellation signal.
 A non-cooperative coroutine will run until its function ends or the process is killed.
 ```kotlin
 /**
